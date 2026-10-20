@@ -1,0 +1,65 @@
+@startuml
+interface Service.Methods {
+~ void arm()
+~ void disarm()
+~ void trigger()
+~ void reset()
+}
+
+abstract class Sensors.Sensor {
+# String id
+# String location
+# boolean active
+# boolean triggered
++ String getId()
++ boolean isActive()
++ boolean isTriggered()
++ String getLabel()
++ void arm()
++ void disarm()
++ void trigger()
++ void reset()
+}
+
+
+class View.Main {
++ {static} void main(String[])
+}
+
+class View.Menu {
+- Alarmsystem system
+- Scanner scanner
++ void run()
+- void printMenu()
+}
+
+
+class Service.Alarmsystem {
+- List<Sensor> sensors
++ void addSensor(Sensor)
++ void armAll()
++ void disarmAll()
++ void resetAllSensors()
++ void triggerSensor(String)
++ boolean isSystemTriggered()
++ void printSensors()
++ void counter()
+}
+
+
+class Sensors.SmokeSensor {
++ void trigger()
++ void disarm()
+}
+
+class Sensors.MotionSensor {
+}
+class Sensors.DoorSensor {
+}
+
+
+Service.Methods <|.. Sensors.Sensor
+Sensors.Sensor <|-- Sensors.SmokeSensor
+Sensors.Sensor <|-- Sensors.MotionSensor
+Sensors.Sensor <|-- Sensors.DoorSensor
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class View.Main {
++ {static} void main(String[])
+}
+
+class View.Menu {
+- Alarmsystem system
+- Scanner scanner
++ void run()
+- void printMenu()
+}
+
+
+@enduml
